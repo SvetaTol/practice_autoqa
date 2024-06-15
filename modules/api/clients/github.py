@@ -23,3 +23,9 @@ class GitHub:
         body = r.json()
 
         return body
+    
+    def compare_commits(self, owner, repo, base, head):
+        r = requests.get(f"https://api.github.com/repos/{owner}/{repo}/compare/{base}...{head}")
+        body = r.json()
+
+        return body

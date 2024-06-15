@@ -36,3 +36,9 @@ def test_repo_with_single_char_be_found(github_api):
 def test_visibility_email(github_api):
     r = github_api.visibility_email('sveta.tolpinskaya@gmail.com')
     assert r[0]['visibility'] == 'public'
+
+
+@pytest.mark.api
+def test_compare_commits(github_api):
+    r = github_api.compare_commits('SvetaTol', 'practice_autoqa', 'main', 'one_more_branch')
+    assert r['total_commits'] == 9
