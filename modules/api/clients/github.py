@@ -29,3 +29,11 @@ class GitHub:
         body = r.json()
 
         return body
+    
+    def privately_report_security_vulnerabilities(self, owner, repo):
+        token = os.getenv('GITHUB_TOKEN')
+        headers = {'Authorization': f'token {token}'}
+        r = requests.post(f"https://api.github.com/repos/{owner}/{repo}/vulnerability-alerts",headers=headers)
+        body = r.json()
+
+        return body

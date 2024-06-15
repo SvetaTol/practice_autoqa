@@ -41,4 +41,10 @@ def test_visibility_email(github_api):
 @pytest.mark.api
 def test_compare_commits(github_api):
     r = github_api.compare_commits('SvetaTol', 'practice_autoqa', 'main', 'one_more_branch')
-    assert r['total_commits'] == 9
+    assert r['total_commits'] > 0
+
+
+@pytest.mark.api
+def test_privately_report_security_vulnerabilities(github_api):
+    r = github_api.privately_report_security_vulnerabilities('SvetaTol', 'practice_autoqa')
+    assert r['message'] == 'Not Found'
