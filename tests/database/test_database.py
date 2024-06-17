@@ -64,3 +64,10 @@ def test_dateiled_orders():
     assert orders[0][1] == 'Sergii'
     assert orders[0][2] == 'солодка вода'
     assert orders[0][3] == 'з цукром'
+
+
+@pytest.mark.database
+def test_insert_invalid_data_type():
+    db = Database()
+    message = db.insert_invalid_data_type('перший', 555, 777, 'десять')  # invalid data type
+    assert message.startswith("Error:")

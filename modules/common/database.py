@@ -57,4 +57,12 @@ class Database():
         record = self.cursor.fetchall()
         return record
     
-    
+    def insert_invalid_data_type(self, product_id, name, description, qnt):
+        try:
+            query = f"INSERT OR REPLACE INTO products (id, name, description, quantity) \
+            VALUES ({product_id}, '{name}', '{description}', {qnt})"
+            self.cursor.execute(query)
+            self.connection.commit()
+            return "Insert successful"
+        except Exception as e:
+            return f"Error: {e}"
