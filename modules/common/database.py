@@ -76,4 +76,17 @@ class Database():
             return "Data type is valid"
         else:
             return "Invalid data type"
+        
+    def check_if_query_was_successful(self, product_id, name, description, qnt):
+        try:
+            query = f"INSERT INTO products (id, name, description, quantity) \
+                        VALUES ({product_id}, '{name}', '{description}', {qnt})"
+            self.cursor.execute(query)
+            self.connection.commit()
+            if self.cursor.rowcount > 0:
+                return "Query was successful"
+            else:
+                return "No rows were affected"
+        except sqlite3.Error as e:
+            return f"An error occurred: {e}"
    

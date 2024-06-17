@@ -78,4 +78,11 @@ def test_check_data_type():
     db = Database()
     message = db.check_data_type('перший', 555, 777, 'десять')
     assert message == "Invalid data type"
-    
+
+
+@pytest.mark.database
+def test_check_if_query_was_successful():
+    db = Database()
+    message = db.check_if_query_was_successful(99, 'тестові', 'дані', 999)
+    assert message == "Query was successful"
+    db.delete_product_by_id(99)
