@@ -59,10 +59,21 @@ class Database():
     
     def insert_invalid_data_type(self, product_id, name, description, qnt):
         try:
-            query = f"INSERT OR REPLACE INTO products (id, name, description, quantity) \
-            VALUES ({product_id}, '{name}', '{description}', {qnt})"
+            query = f"INSERT products (id, name, description, quantity) \
+                VALUES ({product_id}, '{name}', '{description}', {qnt})"
             self.cursor.execute(query)
             self.connection.commit()
             return "Insert successful"
         except Exception as e:
             return f"Error: {e}"
+        
+    def check_data_type(self, product_id, name, description, qnt):
+        if isinstance(product_id, int) and isinstance(name, str) and isinstance(description, str) and isinstance(qnt, int):
+            query = f"INSERT INTO products (id, name, description, quantity) \
+                    VALUES ({product_id}, '{name}', '{description}', {qnt})"
+            self.cursor.execute(query)
+            self.connection.commit()
+            return "Data type is valid"
+        else:
+            return "Invalid data type"
+   

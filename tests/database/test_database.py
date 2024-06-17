@@ -71,3 +71,11 @@ def test_insert_invalid_data_type():
     db = Database()
     message = db.insert_invalid_data_type('перший', 555, 777, 'десять')  # invalid data type
     assert message.startswith("Error:")
+
+
+@pytest.mark.database
+def test_check_data_type():
+    db = Database()
+    message = db.check_data_type('перший', 555, 777, 'десять')
+    assert message == "Invalid data type"
+    
