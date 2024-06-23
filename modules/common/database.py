@@ -90,3 +90,5 @@ class Database():
         except sqlite3.Error as e:
             return f"An error occurred: {e}"
    
+
+   

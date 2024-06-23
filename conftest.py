@@ -16,6 +16,7 @@ class User:
         self.name = ''
         self.second_name = ''
 
+
 @pytest.fixture
 def user():
     user = User()
@@ -24,6 +25,7 @@ def user():
     yield user
     
     user.remove()
+
 
 @pytest.fixture
 def github_api():
